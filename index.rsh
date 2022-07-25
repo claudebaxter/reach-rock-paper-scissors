@@ -26,12 +26,14 @@ export const main = Reach.App(() => { //defines the main export from the program
 
   Bob.only(() => { // match Alice's similar local step and joining of the application through a consensus transfer publication
     interact.acceptWager(wager); //Has bob accept wager (or ignore to stall dapp/cancel operation)
-    const handBob = declassify(interact.getHand());
+    const handBob = (handAlice + 1) % 3;
   });
   Bob.publish(handBob)
     .pay(wager); //Bob pays the wager as well
 
   const outcome = (handAlice + (4 - handBob)) % 3; // But, this line computes the outcome of the game before committing
+  require(handBob == (handAlice + 1) % 3);
+  assert(outcome == 0);
   const             [forAlice, forBob] = // Computates the amounts given to each participant depending on the outcome by determing how many wager amounts each party gets. If the outcome is 2, Alice wins, then she gets two portions; while it if is 0, Bob wins, then he gets two portions; otherwise they each get one portion.
     outcome == 2 ?  [        2,     0]  : // Alice wins
     outcome == 0 ?  [        0,     2]  : // Bob wins
