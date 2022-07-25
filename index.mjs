@@ -29,13 +29,13 @@ seeOutcome: (outcome) => { // implement the seeOutcome method
 
 await Promise.all([ // waits for the backends (below) to complete
   ctcAlice.p.Alice({ // initialize a backend for alice.
-    ...Player('Alice') // implement Alice's interact object here, instantiate the implementation once for Alice and once for Bob. These are the actual objects that wil be bound to interact in the Reach program.
-  wager: stdlib.parseCurrency(5), // defines Alice's wager as 5 units of the network token. This is an example of using a concrete value, rather than a fuction, in a participant interact interface.
+    ...Player('Alice'), //implement Alice's interact object here, instantiate the implementation once for Alice and once for Bob. These are the actual objects that wil be bound to interact in the Reach program.
+  wager: stdlib.parseCurrency(5), //defines Alice's wager as 5 units of the network token. This is an example of using a concrete value, rather than a fuction, in a participant interact interface.
   }),
   ctcBob.p.Bob({ //initialize a backend for Bob
-    ...Player('Bob') // implement Bob's interact object here
+    ...Player('Bob'), // implement Bob's interact object here
   acceptWager: (amt) => { // define the acceptWager function.
-    console.log(`Bob accepts the wager of ${fmt{amt}}.`);
+    console.log(`Bob accepts the wager of ${fmt(amt)}.`);
   }
   }),
 ]);
