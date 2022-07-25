@@ -24,9 +24,10 @@ export const main = Reach.App(() => { //defines the main export from the program
     .pay(wager); // has Alice transfer the amount as part of her publication. The reach compiler would throw an exception if wager did not appear on the previous line, but did appear here.
   commit(); // Commits the state of the consensus network and returns to "local step" where individual participants can act alone.
 
+  unknowable(Bob, Alice(handAlice));
   Bob.only(() => { // match Alice's similar local step and joining of the application through a consensus transfer publication
     interact.acceptWager(wager); //Has bob accept wager (or ignore to stall dapp/cancel operation)
-    const handBob = (handAlice + 1) % 3;
+    const handBob = declassify(interact.getHand());
   });
   Bob.publish(handBob)
     .pay(wager); //Bob pays the wager as well
