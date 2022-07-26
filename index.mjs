@@ -17,7 +17,8 @@ const ctcBob = accBob.contract(backend, ctcAlice.getInfo()); // Bob attaches to 
 const HAND = ['Rock', 'Paper', 'Scissors']; // define arrays to hold the meaning of the hands and outcomes.
 const OUTCOME = ['Bob wins', 'Draw', 'Alice wins'];
 const Player = (Who) => ({ // defines a constructor for the player implementation
-    getHand: () => { //  implement the getHand method
+  ...stdlib.hasRandom,  
+  getHand: () => { //  implement the getHand method
         const hand = Math.floor(Math.random() * 3);
         console.log(`${Who} played ${HAND[hand]}`);
         return hand;
